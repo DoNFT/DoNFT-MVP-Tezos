@@ -74,22 +74,17 @@ export default createStore({
     },
     async getUserNFTs({commit, getters}) {
       const contract = await getters.getTezosNetworkInstance.wallet.at(contractAddress);
-      console.log(contract, "contract");
       const nftStorage = await contract.storage();
-      console.log(nftStorage, "nftStorage");
       const getTokenIds = await nftStorage.reverse_ledger.get(getters.getUserAddress);
       let userNFTs = [];
-      console.log(getTokenIds, "getTokenIds");
 
       if (getTokenIds) {
         userNFTs = await Promise.all([
           ...getTokenIds.map(async id => {
             const tokenId = id.toNumber();
             const metadata = await nftStorage.token_metadata.get(tokenId);
-            console.log(metadata, "meta");
             const tokenInfoBytes = metadata.token_info.get("");
             const tokenInfo = bytes2Char(tokenInfoBytes);
-            console.log(tokenInfo, "tokenInfo");
             return {
               tokenId,
               ipfsHash: tokenInfo,

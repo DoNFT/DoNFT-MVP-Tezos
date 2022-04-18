@@ -24,10 +24,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { NetworkType } from "@airgap/beacon-sdk";
 import { useRouter } from "vue-router";
+import { TezosToolkit, MichelCodecPacker } from "@taquito/taquito";
 
 const walletOptions = {
   name: "Illic et Numquam",
@@ -40,23 +41,23 @@ let Tezos = ref(null);
 let userAddress = ref(null);
 const router = useRouter();
 
-// onMounted(async () => {
-//   Tezos.value = new TezosToolkit(rpcUrl);
-//   wallet.value = new BeaconWallet(walletOptions);
-//   Tezos.value.setPackerProvider(new MichelCodecPacker());
+onMounted(async () => {
+  Tezos.value = new TezosToolkit(rpcUrl);
+  wallet.value = new BeaconWallet(walletOptions);
+  Tezos.value.setPackerProvider(new MichelCodecPacker());
 
-//   if (await wallet.value.client.getActiveAccount()) {
-//     userAddress.value = await wallet.value.getPKH();
-//     Tezos.value.setWalletProvider(wallet);
-//   }
+  if (await wallet.value.client.getActiveAccount()) {
+    userAddress.value = await wallet.value.getPKH();
+    Tezos.value.setWalletProvider(wallet);
+  }
 
-//   console.log(userAddress.value, "dres");
-//   console.log(router, "router");
+  console.log(userAddress.value, "dres");
+  console.log(router, "router");
 
-//   if (userAddress.value) {
-//     router.push({ name: "ChooseNFT" });
-//   }
-// });
+  if (userAddress.value) {
+    router.push({ name: "ChooseNFT" });
+  }
+});
 
 const connectTemple = async () => {
   if (!wallet.value) {

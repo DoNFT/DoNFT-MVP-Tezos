@@ -49,7 +49,7 @@
 
 <script setup>
 import { reactive, computed } from "vue";
-// import { useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { char2Bytes } from "@taquito/utils";
 import { notify } from "@kyvg/vue3-notification";
@@ -60,7 +60,7 @@ import Uploader from "@/components/Uploader/Uploader";
 import Spinner from "@/components/Spinner";
 
 const store = useStore();
-// const router = useRouter();
+const router = useRouter();
 const { StatusType } = statusMixin();
 const contractAddress = "KT1VbJAzSAHQMvf5HC9zfEVMPbT2UcBvaMXb";
 
@@ -133,7 +133,7 @@ const createNewNFT = async () => {
     await op.confirmation();
     console.log(`https://better-call.dev/edo2net/opg/${newNft.opHash}/contents`, "tx nft");
     console.log(getNFTdeployResult.value, "getNFTdeployResult");
-
+    router.push({ name: "ChooseNFT" });
   } catch(err) {
     console.log(err, "ERRROR createNewNFT");
     store.dispatch("setStatus", StatusType.ChoosingParameters);
