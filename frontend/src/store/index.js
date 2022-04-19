@@ -8,7 +8,7 @@ import {
 
 import {getIPFS} from "@/utilities";
 
-const contractAddress = "KT1VbJAzSAHQMvf5HC9zfEVMPbT2UcBvaMXb";
+const contractAddress = "KT1HwsixTRNZr2kqKAKjDCWcbYjfnQD22sAh";
 export default createStore({
   state: {
     ipfs: null,

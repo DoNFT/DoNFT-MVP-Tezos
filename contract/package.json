@@ -1,0 +1,20 @@
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "./compile.sh",
+    "deploy": "ts-node deployment/deploy.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@taquito/signer": "^12.0.3",
+    "@taquito/taquito": "^12.0.3",
+    "dotenv": "^16.0.0",
+    "ts-node": "^10.7.0"
+  }
+}

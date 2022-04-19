@@ -62,7 +62,7 @@ import Spinner from "@/components/Spinner";
 const store = useStore();
 const router = useRouter();
 const { StatusType } = statusMixin();
-const contractAddress = "KT1VbJAzSAHQMvf5HC9zfEVMPbT2UcBvaMXb";
+const contractAddress = "KT1HwsixTRNZr2kqKAKjDCWcbYjfnQD22sAh";
 
 const nftObj = reactive({
   name: "NFT token 2 title",
@@ -121,6 +121,7 @@ const createNewNFT = async () => {
     nftObj.creators = [getUserAddress.value];
     await store.dispatch("setDeployToIPFS", nftObj);
     const contract = await getTezosNetworkInstance.value.wallet.at(contractAddress);
+    console.log(contract, "contract");
     const op = await contract.methods
       .mint(char2Bytes(getNFTdeployResult.value), getUserAddress.value)
       .send();
