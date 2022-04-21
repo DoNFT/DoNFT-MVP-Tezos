@@ -2,7 +2,7 @@ import { TezosToolkit } from "@taquito/taquito";
 import { InMemorySigner } from "@taquito/signer";
 
 
-const TEZOS_RPC_URL='https://hangzhounet.smartpy.io/'
+const TEZOS_RPC_URL='https://hangzhounet.smartpy.io'
 const DEPLOYER_PRIVATE_KEY='edskRxyMAF9gvR21Eiu4qU5sBgWeycuYmwjDcHAZ8dqsSsDRgfTiL9LKNjyRAt6TeKqf1WpmzhXQeYGWQgYsDui8Ar1bgojaGs'
 
 
@@ -15,8 +15,8 @@ const deploy = async () => {
 
   try {
     const { hash, contractAddress } = await Tezos.contract.originate({
-      code: require("../build/counter.json"),
-      init: require("../build/counter_storage.json"),
+      code: require("../build/fa2_nft_tokens.json"),
+      init: require("../build/fa2_nft_tokens_storage.json"),
     });
 
     console.log("Successfully deployed contract");

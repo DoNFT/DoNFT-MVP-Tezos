@@ -49,9 +49,9 @@
 
 <script setup>
 import { reactive, computed } from "vue";
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { char2Bytes } from "@taquito/utils";
+// import { char2Bytes } from "@taquito/utils";
 import { notify } from "@kyvg/vue3-notification";
 import statusMixin from "@/mixins/StatusMixin";
 
@@ -60,9 +60,9 @@ import Uploader from "@/components/Uploader/Uploader";
 import Spinner from "@/components/Spinner";
 
 const store = useStore();
-const router = useRouter();
+// const router = useRouter();
 const { StatusType } = statusMixin();
-const contractAddress = "KT1HwsixTRNZr2kqKAKjDCWcbYjfnQD22sAh";
+const contractAddress = "KT1N2KKJieknZYQFbZjAq8XGYEt4JLU8jRnh";
 
 const nftObj = reactive({
   name: "NFT token 2 title",
@@ -94,11 +94,11 @@ const getUserAddress = computed({
   },
 });
 
-const getNFTdeployResult = computed({
-  get() {
-    return store.getters["getNFTdeployResult"];
-  },
-});
+// const getNFTdeployResult = computed({
+//   get() {
+//     return store.getters["getNFTdeployResult"];
+//   },
+// });
 
 const getStatus = computed({
   get() {
@@ -122,19 +122,19 @@ const createNewNFT = async () => {
     await store.dispatch("setDeployToIPFS", nftObj);
     const contract = await getTezosNetworkInstance.value.wallet.at(contractAddress);
     console.log(contract, "contract");
-    const op = await contract.methods
-      .mint(char2Bytes(getNFTdeployResult.value), getUserAddress.value)
-      .send();
+    // const op = await contract.methods
+    //   .mint(char2Bytes(getNFTdeployResult.value), getUserAddress.value)
+    //   .send();
 
-    const newNft = {
-      imageHash: getNFTdeployResult.value.image,
-      metadataHash: getNFTdeployResult.value,
-      opHash: op.opHash
-    };
-    await op.confirmation();
-    console.log(`https://better-call.dev/edo2net/opg/${newNft.opHash}/contents`, "tx nft");
-    console.log(getNFTdeployResult.value, "getNFTdeployResult");
-    router.push({ name: "ChooseNFT" });
+    // const newNft = {
+    //   imageHash: getNFTdeployResult.value.image,
+    //   metadataHash: getNFTdeployResult.value,
+    //   opHash: op.opHash
+    // };
+    // await op.confirmation();
+    // console.log(`https://better-call.dev/edo2net/opg/${newNft.opHash}/contents`, "tx nft");
+    // console.log(getNFTdeployResult.value, "getNFTdeployResult");
+    // router.push({ name: "ChooseNFT" });
   } catch(err) {
     console.log(err, "ERRROR createNewNFT");
     store.dispatch("setStatus", StatusType.ChoosingParameters);

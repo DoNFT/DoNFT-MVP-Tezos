@@ -18,7 +18,7 @@ const walletOptions = {
   preferredNetwork: NetworkType.HANGZHOUNET
 };
 
-const rpcUrl = "https://hangzhounet.api.tez.ie";
+const rpcUrl = "https://hangzhounet.smartpy.io";
 
 const routes = [
   {
